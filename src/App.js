@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import SearchBooks from './SearchBooks'
+import ListAllBooks from './ListAllBooks'
+import * as BooksAPI from './BooksAPI'
+import './App.css'
 
-class App extends Component {
+class BooksApp extends Component {
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="app">
+        <Route path='/search' render={() => (
+          <SearchBooks/>
+        )}/>
+        <Route exact path='/' render={() => (
+          <ListAllBooks/>
+        )}/>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default BooksApp
