@@ -7,11 +7,34 @@ import './App.css'
 
 class BooksApp extends Component {
 
+  state = {
+    results: []
+  }
+
+  searchForBooks = (query) => {
+    console.log('searching for books...')
+    if ( query === '') {
+      this.setState({ results: [] })
+      return
+    } else {
+      BooksAPI.search(query, 20).then((results) => {
+        if (results) {
+          console.log('found some books...')
+          console.log(results)
+        } else {
+          console.log('nothing found...')
+        }
+      })
+    }
+  }
+
   render() {
     return (
       <div className="app">
         <Route path='/search' render={() => (
-          <SearchBooks/>
+          <SearchBooks onQuery={(query) => {
+            this.searchForBooks(query)
+          }}/>
         )}/>
         <Route exact path='/' render={() => (
           <ListAllBooks/>
