@@ -11,9 +11,9 @@ class ListAllBooks extends Component {
 
     return (
       <div className="list-books">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
         <div className="list-books-content">
           {shelfCategories.map((category) => {
             let sortedBooks = books.filter((book) => (book.shelf === category))

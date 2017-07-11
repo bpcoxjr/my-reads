@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 import Book from './Book.js'
 
 class BookShelf extends Component {
@@ -13,11 +14,19 @@ class BookShelf extends Component {
           <h3 className="bookshelf-title">{ category }</h3>
           <div className="bookshelf-books">
             <ol className="books-grid">
-              {books.map((book) => (
-                <li key={book.id}>
-                  <Book id={book.id} bookDetails={book} onStatusChange={onStatusChange}/>
-                </li>
-              ))}
+              <CSSTransitionGroup
+              transitionName="example"
+              transitionEnter={true}
+              transitionEnterTimeout={700}
+              transitionLeave={true}
+              transitionLeaveTimeout={700}
+              >
+                {books.map((book) => (
+                  <li key={book.id}>
+                    <Book id={book.id} bookDetails={book} onStatusChange={onStatusChange}/>
+                  </li>
+                ))}
+              </CSSTransitionGroup>
             </ol>
           </div>
         </div>
