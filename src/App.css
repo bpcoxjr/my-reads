@@ -85,6 +85,13 @@ body, .app {
   outline: none;
 }
 
+.search-results-stats {
+  position: relative;
+  display: block;
+  text-align: center;
+  top: 65px;
+}
+
 .close-search {
   display: block;
   top: 20px;

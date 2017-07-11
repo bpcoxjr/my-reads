@@ -8,21 +8,44 @@ import './App.css'
 class BooksApp extends Component {
 
   state = {
-    results: []
+    results: [],
+    books: []
   }
 
+  // runs behind the scenes automatically by React every time app loads
+  componentDidMount() {
+    console.log('App mounted...')
+    this.fetchAllBooks();
+  }
+
+  // gets called every time componentDidMount method runs to set state on all books
+  fetchAllBooks = () => {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
+  /* called from handleShelfSelection method in Book.js via StatusChange prop when user assigns/reassigns book status; updates the status of chosen book and then re-renders all books via fetchAllBooks method */
+  updateBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      this.fetchAllBooks()
+    })
+  }
+
+  //  called from handleSearchQuery in SearchBooks.js when user enters query
   searchForBooks = (query) => {
-    console.log('searching for books...')
     if ( query === '') {
       this.setState({ results: [] })
       return
     } else {
       BooksAPI.search(query, 20).then((results) => {
-        if (results) {
-          console.log('found some books...')
+        if (results.length >= 1) {
+          console.log('Found some books...')
+          this.setState({ results })
           console.log(results)
         } else {
-          console.log('nothing found...')
+          console.log('Nothing found...')
+          this.setState({ results: [] })
         }
       })
     }
@@ -31,13 +54,24 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route path='/search' render={() => (
-          <SearchBooks onQuery={(query) => {
-            this.searchForBooks(query)
-          }}/>
+        <Route path='/search' render={({ history }) => (
+          <SearchBooks
+            books={this.state.results}
+            onQuery={(query) => {
+              this.searchForBooks(query)
+            }}
+            onStatusChange={(book, shelf) => {
+              this.updateBook(book, shelf)
+            }}
+          />
         )}/>
         <Route exact path='/' render={() => (
-          <ListAllBooks/>
+          <ListAllBooks
+            books={this.state.books}
+            onStatusChange={(book, shelf) => {
+              this.updateBook(book, shelf)
+            }}
+          />
         )}/>
       </div>
     )
