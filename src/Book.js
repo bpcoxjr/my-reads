@@ -15,12 +15,12 @@ class Book extends Component {
     this.props.onStatusChange(this.props.bookDetails, targetShelf)
   }
 
-  openModal = () => {
-    this.setState({ displayModal: true })
-  }
-
-  hideModal = () => {
-    this.setState({ displayModal: false })
+  toggleModal = () => {
+    if (this.state.displayModal === false) {
+      this.setState({ displayModal: true })
+    } else {
+      this.setState({ displayModal: false })
+    }
   }
 
   render() {
@@ -31,7 +31,7 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')` }}>
-            <div className="book-overlay" onClick={this.openModal}>
+            <div className="book-overlay" onClick={this.toggleModal}>
               <div className="get-more-info">
                 <p>more</p>
               </div>
@@ -53,9 +53,9 @@ class Book extends Component {
             <p key={author}>{author}</p>
           ))}
         </div>
-        <ReactModal isOpen={this.state.displayModal} contentLabel="modal">
+        <ReactModal isOpen={this.state.displayModal} contentLabel="modal" className={{ base: 'base-modal', afterOpen: 'base-modal' }}>
           <h1>This is the modal!</h1>
-          <button className="close-modal-button" onClick={this.hideModal}>close</button>
+          <button className="close-modal-button" onClick={this.toggleModal}>close</button>
         </ReactModal>
       </div>
     )

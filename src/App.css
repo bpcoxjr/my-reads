@@ -232,8 +232,16 @@ body, .app {
   font-weight: lighter;
 }
 
-/*.ReactModalPortal {
+.base-modal {
+  position: absolute;
   top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-}*/
+  left: 33%;
+  right: 33%;
+  bottom: 15%;
+  background-color: #fff;
+}
+
+/* Remove scroll on the body when react-modal is open */
+.ReactModal__Body--open {
+    overflow: hidden;
+}
