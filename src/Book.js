@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import ReactModal from 'react-modal'
 
 class Book extends Component {
+
+  state = {
+    displayModal: false
+  }
 
   // called when user chooses an option from the select drop-down menu; passes selection to onStatusChange prop
   handleShelfSelection = (event) => {
@@ -8,6 +13,14 @@ class Book extends Component {
     const targetShelf = event.target.value
     console.log('moving to shelf: ', targetShelf)
     this.props.onStatusChange(this.props.bookDetails, targetShelf)
+  }
+
+  openModal = () => {
+    this.setState({ displayModal: true })
+  }
+
+  hideModal = () => {
+    this.setState({ displayModal: false })
   }
 
   render() {
@@ -18,8 +31,10 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')` }}>
-            <div className="overlay">
-              <div className="info"></div>
+            <div className="book-overlay" onClick={this.openModal}>
+              <div className="get-more-info">
+                <p>more</p>
+              </div>
             </div>
           </div>
           <div className="book-shelf-changer">
@@ -38,6 +53,10 @@ class Book extends Component {
             <p key={author}>{author}</p>
           ))}
         </div>
+        <ReactModal isOpen={this.state.displayModal} contentLabel="modal">
+          <h1>This is the modal!</h1>
+          <button className="close-modal-button" onClick={this.hideModal}>close</button>
+        </ReactModal>
       </div>
     )
 

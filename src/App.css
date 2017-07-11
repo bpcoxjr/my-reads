@@ -200,3 +200,40 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* book overlay */
+
+.book-overlay {
+  width: 128px;
+  height: 193px;
+  margin: 0;
+  background-color: #000;
+  text-align: center;
+  display: table;
+  opacity: 0;
+}
+
+.book-overlay:hover {
+  opacity: 0.7;
+}
+
+.get-more-info {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.get-more-info p {
+  border: 1px solid #fff;
+  width: 50%;
+  margin: 0 auto;
+  font-weight: lighter;
+}
+
+/*.ReactModalPortal {
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}*/
