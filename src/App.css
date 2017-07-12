@@ -64,7 +64,21 @@ body, .app {
   background-size: 28px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
 }
+
+.open-search a:hover {
+  background: #EC407A;
+  background-image: url('./icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  transform: rotate(180deg);
+  box-shadow: 0 0 6px rgba(0,0,0,0.16), 0 0 6px rgba(0,0,0,0.23);
+}
+
+
 
 .example-enter {
   opacity: 0.01;
