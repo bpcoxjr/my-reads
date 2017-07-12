@@ -33,7 +33,7 @@ class Book extends Component {
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')` }}>
             <div className="book-overlay" onClick={this.toggleModal}>
               <div className="get-more-info">
-                <p>more</p>
+                <h3>more</h3>
               </div>
             </div>
           </div>
@@ -47,15 +47,40 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{bookDetails.title}</div>
+        <div className="book-title">
+          {bookDetails.title}
+        </div>
         <div className="book-authors">
           {bookDetails.authors.map((author) => (
             <p key={author}>{author}</p>
           ))}
         </div>
         <ReactModal isOpen={this.state.displayModal} contentLabel="modal" className={{ base: 'base-modal', afterOpen: 'base-modal' }}>
-          <h1>This is the modal!</h1>
-          <button className="close-modal-button" onClick={this.toggleModal}>close</button>
+          <div className="modal-flex-container">
+            <div className="modal-book-cover" style={{ backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')`, width: 128, height: 193 }}>
+            </div>
+            <div className="modal-book-details">
+              <div>
+                <h3 className="modal-header">Publisher</h3>
+                <p className="modal-detail">{bookDetails.publisher}</p>
+              </div>
+              <div>
+                <h3 className="modal-header">Published</h3>
+                <p className="modal-detail">{bookDetails.publishedDate}</p>
+              </div>
+              <div>
+              <h3 className="modal-header">Author(s)</h3>
+              <p className="modal-detail">{bookDetails.authors}</p>
+              </div>
+            </div>
+          </div>
+          <div className="modal-description-container">
+            <h3 className="modal-description-detail-header">Description</h3>
+            <p className="modal-book-detail">{bookDetails.description}</p>
+          </div>
+          <div className="close-button-container">
+            <button className="close-modal-button" onClick={this.toggleModal}>close</button>
+          </div>
         </ReactModal>
       </div>
     )

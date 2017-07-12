@@ -12,13 +12,15 @@ body, .app {
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #2196f3;
   text-align: center;
 }
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
   color: white;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2.25em;
 }
 
 .list-books-content {
@@ -38,6 +40,8 @@ body, .app {
 
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 1.5em;
 }
 .bookshelf-books {
   text-align: center;
@@ -53,7 +57,7 @@ body, .app {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: #42a5f5;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -101,6 +105,7 @@ body, .app {
   font-size: 1.25em;
   border: none;
   outline: none;
+  font-family: 'Average', serif;
 }
 
 .search-results-stats {
@@ -108,6 +113,11 @@ body, .app {
   display: block;
   text-align: center;
   top: 65px;
+}
+
+.search-results-stats h3 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 1.75em;
 }
 
 .close-search {
@@ -141,6 +151,8 @@ body, .app {
 }
 .books-grid span {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .books-grid li {
   padding: 10px 15px;
@@ -153,12 +165,16 @@ body, .app {
 .book-title,
 .book-authors {
   font-size: 0.8em;
+  font-family: 'Average', serif;
 }
 .book-title {
   margin-top: 10px;
 }
 .book-authors {
   color: #999;
+}
+.book-authors p {
+  margin: 0;
 }
 
 .book-top {
@@ -175,7 +191,7 @@ body, .app {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
+  background: #EC407A;
   background-image: url('./icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -194,6 +210,7 @@ body, .app {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+  border-radius: 2px;
 }
 .book-cover-title {
   padding: 20px 10px 0;
@@ -214,7 +231,7 @@ body, .app {
 }
 
 .book-overlay:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .get-more-info {
@@ -225,20 +242,96 @@ body, .app {
   color: #fff;
 }
 
-.get-more-info p {
+.get-more-info h3 {
   border: 1px solid #fff;
   width: 50%;
   margin: 0 auto;
   font-weight: lighter;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 .base-modal {
-  position: absolute;
-  top: 15%;
-  left: 33%;
-  right: 33%;
-  bottom: 15%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  margin: 0 auto;
   background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #888888;
+  max-height: 80%;
+  overflow: scroll;
+}
+
+.base-modal:focus {
+  outline: none;
+}
+
+.modal-flex-container {
+  display: flex;
+}
+
+.modal-book-cover {
+  margin: 20px 10px 20px 20px;
+  border-radius: 2px;
+}
+
+.modal-book-details {
+  flex-grow: 1;
+  margin: 20px 10px 0 0;
+  padding: 10px;
+}
+
+.modal-header {
+  font-size: 1.25em;
+  margin: 5px 0px;
+  text-transform: uppercase;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.modal-detail {
+  font-size: 0.8em;
+  margin: 0;
+  font-family: 'Average', serif;
+}
+
+.modal-description-detail-header {
+  font-size: 1.75em;
+  margin: 5px 20px;
+  text-transform: uppercase;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.modal-book-detail {
+  font-size: 0.8em;
+  margin: 5px 20px 20px 20px;
+  font-family: 'Average', serif;
+}
+
+.close-button-container {
+  position: relative;
+  margin: 15px;
+  text-align: right;
+}
+
+.close-modal-button {
+  margin-bottom: 15px;
+  padding: 10px 25px;
+  border: 1px solid #2196f3;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #2196f3;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.close-modal-button:hover {
+  background-color: #2196f3;
+  color: #fff;
+  cursor: pointer;
 }
 
 /* Remove scroll on the body when react-modal is open */

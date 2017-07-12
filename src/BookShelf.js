@@ -17,9 +17,9 @@ class BookShelf extends Component {
               <CSSTransitionGroup
               transitionName="example"
               transitionEnter={true}
-              transitionEnterTimeout={700}
+              transitionEnterTimeout={400}
               transitionLeave={true}
-              transitionLeaveTimeout={700}
+              transitionLeaveTimeout={400}
               >
                 {books.map((book) => (
                   <li key={book.id}>
