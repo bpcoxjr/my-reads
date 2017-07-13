@@ -11,7 +11,6 @@ class Book extends Component {
   handleShelfSelection = (event) => {
     event.preventDefault()
     const targetShelf = event.target.value
-    console.log('moving to shelf: ', targetShelf)
     this.props.onStatusChange(this.props.bookDetails, targetShelf)
   }
 
@@ -26,11 +25,13 @@ class Book extends Component {
   render() {
 
     const { bookDetails } = this.props
+    let thumbnail = bookDetails.imageLinks ? bookDetails.imageLinks.thumbnail : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif'
+    let authors = bookDetails.authors ? bookDetails.authors : []
 
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')` }}>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${thumbnail}')` }}>
             <div className="book-overlay" onClick={this.toggleModal}>
               <div className="get-more-info">
                 <h3>more</h3>
@@ -51,21 +52,21 @@ class Book extends Component {
           {bookDetails.title}
         </div>
         <div className="book-authors">
-          {bookDetails.authors.map((author) => (
-            <p key={author}>{author}</p>
-          ))}
+          {authors.length ? authors.map((author, index) => (
+            <p key={index}>{author}</p>
+          )): <p>Author Unknown</p>}
         </div>
         <ReactModal isOpen={this.state.displayModal} contentLabel="modal" className={{ base: 'base-modal', afterOpen: 'base-modal' }}>
           <div className="modal-flex-container">
-            <div className="modal-book-cover" style={{ backgroundImage: `url('${bookDetails.imageLinks.thumbnail}')`, width: 128, height: 193 }}>
+            <div className="modal-book-cover" style={{ backgroundImage: `url('${thumbnail}')`, width: 128, height: 193 }}>
             </div>
             <div className="modal-book-details">
               <div>
-                <h3 className="modal-header">Publisher</h3>
+                <h3 className="modal-header">Published By</h3>
                 <p className="modal-detail">{bookDetails.publisher}</p>
               </div>
               <div>
-                <h3 className="modal-header">Published</h3>
+                <h3 className="modal-header">On</h3>
                 <p className="modal-detail">{bookDetails.publishedDate}</p>
               </div>
               <div>

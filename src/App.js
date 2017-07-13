@@ -14,7 +14,6 @@ class BooksApp extends Component {
 
   // runs behind the scenes automatically by React every time app loads
   componentDidMount() {
-    console.log('App mounted...')
     this.fetchAllBooks();
   }
 
@@ -39,14 +38,8 @@ class BooksApp extends Component {
       return
     } else {
       BooksAPI.search(query, 20).then((results) => {
-        if (results.length >= 1) {
-          console.log('Found some books...')
-          this.setState({ results })
-          console.log(results)
-        } else {
-          console.log('Nothing found...')
-          this.setState({ results: [] })
-        }
+        console.log(results)
+        results = results.length >= 1 ? this.setState({ results }) : this.setState({ results: [] })
       })
     }
   }

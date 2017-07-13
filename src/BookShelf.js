@@ -15,11 +15,11 @@ class BookShelf extends Component {
           <div className="bookshelf-books">
             <ol className="books-grid">
               <CSSTransitionGroup
-              transitionName="example"
+              transitionName="shelf-move"
               transitionEnter={true}
-              transitionEnterTimeout={400}
+              transitionEnterTimeout={500}
               transitionLeave={true}
-              transitionLeaveTimeout={400}
+              transitionLeaveTimeout={500}
               >
                 {books.map((book) => (
                   <li key={book.id}>

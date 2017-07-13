@@ -12,13 +12,13 @@ class SearchBooks extends Component {
   handleSearchQuery = (event) => {
     event.preventDefault()
     let userQuery = event.target.value // grab the value of user input
-    this.setState({ query: userQuery.trim() }) // eliminate any whitespace and update state
-    this.props.onQuery(this.state.query) // use onQuery prop to call searchForBooks method in App.js
+    this.setState({ query: userQuery }) // eliminate any whitespace and update state
+    let trimmedUserQuery = userQuery.trim() // store trimmed query in new variable so user can type space in input field
+    this.props.onQuery(trimmedUserQuery) // use onQuery prop to call searchForBooks method in App.js
   }
 
   // method is called when user clicks back arrow from search bar to reset query back to empty string
   clearSearchQuery = () => {
-    console.log('clearing search query...')
     this.setState({ query: '' })
     this.props.onQuery('') // this resets search results to empty
   }
@@ -36,12 +36,9 @@ class SearchBooks extends Component {
             <input type="text" onChange={this.handleSearchQuery} value={query} placeholder="Search by title or author..."/>
           </div>
         </div>
-        {/* only show results tally if user has entered a query */}
-        { query !== '' &&
-          <div className="search-results-stats">
-            <h3>Displaying {books.length} results</h3>
-          </div>
-        }
+        <div className="search-results-stats">
+          <h3>Displaying <span className="books-search-tally">{books.length}</span> results</h3>
+        </div>
         <div className="search-books-results">
           <ol className="books-grid">
           {books.map((book) => {
