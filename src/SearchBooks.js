@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import sortBy from 'sort-by'
 import Book from './Book'
 
 class SearchBooks extends Component {
+
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onStatusChange: PropTypes.func.isRequired
+  }
 
   state = {
     query: ''
@@ -27,6 +34,8 @@ class SearchBooks extends Component {
 
     const { books, onStatusChange } = this.props
     const { query } = this.state
+
+    books.sort(sortBy('title'))
 
     return (
       <div className="search-books">

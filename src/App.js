@@ -38,7 +38,6 @@ class BooksApp extends Component {
       return
     } else {
       BooksAPI.search(query, 20).then((results) => {
-        console.log(results)
         results = results.length >= 1 ? this.setState({ results }) : this.setState({ results: [] })
       })
     }
