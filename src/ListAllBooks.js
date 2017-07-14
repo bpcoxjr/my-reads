@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import sortBy from 'sort-by'
 import BookShelf from './BookShelf'
 
 class ListAllBooks extends Component {
@@ -8,6 +9,9 @@ class ListAllBooks extends Component {
 
     const { books, onStatusChange } = this.props
     const shelfCategories = [ 'currentlyReading', 'wantToRead', 'read' ]
+
+    // sort books alphabetically by title
+    books.sort(sortBy('title'))
 
     return (
       <div className="list-books">

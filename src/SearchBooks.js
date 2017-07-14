@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 import Book from './Book'
 
+
 class SearchBooks extends Component {
 
   static propTypes = {
@@ -12,14 +13,14 @@ class SearchBooks extends Component {
   }
 
   state = {
-    query: ''
+    query: '',
   }
 
   // method is called when user enters a value in the input field
   handleSearchQuery = (event) => {
     event.preventDefault()
     let userQuery = event.target.value // grab the value of user input
-    this.setState({ query: userQuery }) // eliminate any whitespace and update state
+    this.setState({ query: userQuery }) // update state
     let trimmedUserQuery = userQuery.trim() // store trimmed query in new variable so user can type space in input field
     this.props.onQuery(trimmedUserQuery) // use onQuery prop to call searchForBooks method in App.js
   }
@@ -35,6 +36,7 @@ class SearchBooks extends Component {
     const { books, onStatusChange } = this.props
     const { query } = this.state
 
+    // sort search results alphabetically by title
     books.sort(sortBy('title'))
 
     return (

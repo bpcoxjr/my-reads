@@ -14,6 +14,7 @@ class Book extends Component {
     this.props.onStatusChange(this.props.bookDetails, targetShelf)
   }
 
+  // called when user hovers book cover thumbnail image and clicks to display modal with more info
   toggleModal = () => {
     if (this.state.displayModal === false) {
       this.setState({ displayModal: true })
@@ -25,6 +26,8 @@ class Book extends Component {
   render() {
 
     const { bookDetails } = this.props
+
+    // had to add in these ternary operators because an error was being thrown if thumbnail or authors was unknown
     let thumbnail = bookDetails.imageLinks ? bookDetails.imageLinks.thumbnail : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif'
     let authors = bookDetails.authors ? bookDetails.authors : []
 
@@ -51,11 +54,13 @@ class Book extends Component {
         <div className="book-title">
           {bookDetails.title}
         </div>
+        {/* Using ternary operator here to display 'author unknown' text if bookDetails.authors returns no value */}
         <div className="book-authors">
           {authors.length ? authors.map((author, index) => (
             <p key={index}>{author}</p>
           )): <p>Author Unknown</p>}
         </div>
+        {/* displayed when user hovers book thumbnail image and clicks */}
         <ReactModal isOpen={this.state.displayModal} contentLabel="modal" className={{ base: 'base-modal', afterOpen: 'base-modal' }}>
           <div className="modal-flex-container">
             <div className="modal-book-cover" style={{ backgroundImage: `url('${thumbnail}')`, width: 128, height: 193 }}>

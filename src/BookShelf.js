@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
-import sortBy from 'sort-by'
-import Book from './Book.js'
+import Book from './Book'
 
 class BookShelf extends Component {
 
   render() {
 
     const { category, books, onStatusChange } = this.props
-
-    books.sort(sortBy('title'))
 
     return (
       <div>
