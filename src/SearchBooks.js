@@ -53,10 +53,9 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
           {books.map((book) => {
-            let key = Math.random().toString(36).substr(-8)
             return (
-              <li key={key}>
-                <Book key={key} bookDetails={book} onStatusChange={onStatusChange}/>
+              <li key={book.id}>
+                <Book key={book.id} bookDetails={book} onStatusChange={onStatusChange}/>
               </li>
             )
           })}
